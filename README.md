@@ -5,9 +5,9 @@ that tab runs Claude Code or Codex (tabs without it, like a shell or a browser, 
 keeps the width you resize it to, and follows Claude's `←` agent view when you switch the terminal to another main
 session. If the agent quits in its tab, the panel closes a few seconds later.
 
-![agent-panel next to a Claude Code session: subagents with live progress, then the Messages, Refs and To do tabs](docs/demo.gif)
+![agent-panel next to a Claude Code session: the Subagents, Messages, Refs and To do tabs](docs/demo.gif)
 
-Claude Code runs three subagents while the panel follows along ([full-resolution video](docs/demo.mp4)).
+A quick tour of the four tabs. The [full video](docs/demo.mp4) shows the whole run: Claude Code working with three subagents while the panel follows along.
 
 Switch tabs with a click on the tab bar, `←` / `→`, `Tab`, or `1` / `2` / `3` / `4`. In a narrow panel the tab names shorten
 to `A`, `M`, `R` and `D`.
