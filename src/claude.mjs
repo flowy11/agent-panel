@@ -208,9 +208,7 @@ export class Session {
     this.sessionId = sessionId;
     this.provider = "claude";
     this.assistantRole = "claude";
-    this.mainFile = sessionId ? findSessionFile(sessionId) : null;
-    this.dir = this.mainFile && path.join(this.mainFile.replace(/\.jsonl$/, ""), "subagents");
-    this.main = this.mainFile && new Tail(this.mainFile);
+    this.locate();
     this.agents = new Map();
     this.stops = new Map(); // agent id -> { ts, status } from task notifications
     this.results = new Map(); // tool_use_id -> ts, for subagents run in the foreground
@@ -319,7 +317,15 @@ export class Session {
     }
   }
 
+  // A new session's transcript only appears with its first message, so keep looking until then.
+  locate() {
+    this.mainFile = this.sessionId ? findSessionFile(this.sessionId) : null;
+    this.dir = this.mainFile && path.join(this.mainFile.replace(/\.jsonl$/, ""), "subagents");
+    this.main = this.mainFile && new Tail(this.mainFile);
+  }
+
   refresh() {
+    if (!this.mainFile) this.locate();
     if (!this.mainFile) return;
     for (const line of this.main.read()) {
       const entry = parse(line);

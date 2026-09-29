@@ -78,3 +78,12 @@ test('Claude provider still reads messages and tool results', () => {
   assert.equal(s.turns.length, 1); assert.equal(s.messages.at(-1).role, 'claude');
   assert.equal(s.messages.at(-1).actions[0].result, 'ok');
 });
+
+test('Claude session picks up a transcript that appears after the panel attached', () => {
+  const project = path.join(process.env.CLAUDE_CONFIG_DIR, 'projects/test'); fs.mkdirSync(project, { recursive: true });
+  const s = createSession('claude-late'); s.refresh();
+  assert.equal(s.messages.length, 0);
+  fs.writeFileSync(path.join(project, 'claude-late.jsonl'), JSON.stringify({ type: 'user', message: { content: 'First message' } }) + '\n');
+  s.refresh();
+  assert.equal(s.turns.length, 1);
+});
