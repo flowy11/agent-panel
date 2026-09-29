@@ -3,11 +3,11 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 
-export const PLUGIN_ID = process.env.HERDR_PLUGIN_ID || "agentpanel";
-export const LABEL = "agentpanel";
-export const OLD_LABELS = ["Subagents", "Agent Panel"]; // earlier name, closed if still open
+export const PLUGIN_ID = process.env.HERDR_PLUGIN_ID || "agent-panel";
+export const LABEL = "agent-panel";
+export const OLD_LABELS = ["Subagents", "Agent Panel", "agentpanel"]; // earlier names, closed if still open
 export const SIDE_RATIO = 0.78; // share of the tab the agent keeps
-export const STATE_DIR = process.env.HERDR_PLUGIN_STATE_DIR || path.join(os.homedir(), ".local/state/herdr-agentpanel");
+export const STATE_DIR = process.env.HERDR_PLUGIN_STATE_DIR || path.join(os.homedir(), ".local/state/herdr-agent-panel");
 export const HIDDEN = path.join(STATE_DIR, "hidden");
 
 // Other plugins' panels; never dock next to these or track them as the agent.

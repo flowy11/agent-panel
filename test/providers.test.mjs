@@ -7,7 +7,7 @@ import { CodexSession, readCodexConversation } from '../src/codex.mjs';
 import { createSession, paneSession } from '../src/providers.mjs';
 import { isAgentPane } from '../src/lib.mjs';
 
-const root = fs.mkdtempSync(path.join(os.tmpdir(), 'agentpanel-test-'));
+const root = fs.mkdtempSync(path.join(os.tmpdir(), 'agent-panel-test-'));
 process.env.CODEX_HOME = path.join(root, 'codex');
 process.env.CLAUDE_CONFIG_DIR = path.join(root, 'claude');
 const dir = path.join(process.env.CODEX_HOME, 'sessions/2026/09/29');
@@ -64,7 +64,7 @@ test('Codex custom patch calls mark edits and failed outputs', () => {
 });
 test('pane selection supports both providers and excludes plugin panes', () => {
   assert.ok(isAgentPane({ agent: 'codex' })); assert.ok(isAgentPane({ agent: 'claude' }));
-  assert.ok(!isAgentPane({ agent: 'codex', label: 'agentpanel' })); assert.ok(!isAgentPane({ agent: 'other' }));
+  assert.ok(!isAgentPane({ agent: 'codex', label: 'agent-panel' })); assert.ok(!isAgentPane({ agent: 'other' }));
   assert.equal(paneSession({ agent: 'codex', terminal_title_stripped: 'unrelated', agent_session: { value: 'parent' } }), 'parent');
 });
 test('Claude provider still reads messages and tool results', () => {

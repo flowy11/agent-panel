@@ -11,7 +11,7 @@ if [ -z "$node_bin" ]; then
   done
 fi
 if [ -z "$node_bin" ]; then
-  echo "agentpanel: node not found" >&2
+  echo "agent-panel: node not found" >&2
   exit 1
 fi
 

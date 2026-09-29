@@ -1,6 +1,6 @@
-id = "agentpanel"
-name = "agentpanel"
-version = "0.4.1"
+id = "agent-panel"
+name = "agent-panel"
+version = "0.4.2"
 min_herdr_version = "0.8.2"
 description = "A permanent side panel for the Claude Code or Codex session you're focused on: your messages as a compact list, and its subagents (running, done, failed or stalled) with what each is doing, what the agent asked you to do, and the URLs and files it mentioned."
 platforms = ["linux", "macos"]
@@ -25,7 +25,7 @@ command = ["sh", "bin/run.sh", "follow"]
 
 [[actions]]
 id = "toggle"
-title = "agentpanel: show / hide"
+title = "agent-panel: show / hide"
 contexts = ["global"]
 command = ["sh", "bin/run.sh", "toggle"]
 
@@ -40,6 +40,6 @@ command = ["sh", "bin/run.sh", "message"]
 
 [[panes]]
 id = "panel"
-title = "agentpanel"
+title = "agent-panel"
 placement = "split"
 command = ["sh", "bin/run.sh", "panel"]

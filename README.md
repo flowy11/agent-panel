@@ -1,11 +1,11 @@
-# agentpanel — a herdr plugin
+# agent-panel — a herdr plugin
 
 A permanent side panel for the Claude Code or Codex session you're focused on. It docks on the right of the focused tab when
 that tab runs Claude Code or Codex (tabs without it, like a shell or a browser, are left alone), follows you between tabs,
 keeps the width you resize it to, and follows Claude's `←` agent view when you switch the terminal to another main
 session. If the agent quits in its tab, the panel closes a few seconds later.
 
-![agentpanel next to a Claude Code session: subagents with live progress, then the Messages, Refs and To do tabs](docs/demo.gif)
+![agent-panel next to a Claude Code session: subagents with live progress, then the Messages, Refs and To do tabs](docs/demo.gif)
 
 Claude Code runs three subagents while the panel follows along ([full-resolution video](docs/demo.mp4)).
 
@@ -17,12 +17,12 @@ to `A`, `M`, `R` and `D`.
 Needs herdr 0.8.2 or later and Node.js on macOS or Linux.
 
 ```sh
-herdr plugin install flowy11/agentpanel
+herdr plugin install flowy11/agent-panel
 ```
 
 The Claude Code hooks below are optional. They only print text, so you can register them from the installed
-checkout (`ls -d ~/.config/herdr/plugins/github/*agentpanel*`) or copy them somewhere stable such as
-`~/.claude/hooks/` first; `<agentpanel>` below stands for that folder.
+checkout (`ls -d ~/.config/herdr/plugins/github/*agent-panel*`) or copy them somewhere stable such as
+`~/.claude/hooks/` first; `<agent-panel>` below stands for that folder.
 
 ## Subagents
 
@@ -79,7 +79,7 @@ or cleared after that):
 ```json
 "hooks": {
   "SessionStart": [
-    { "hooks": [{ "type": "command", "command": "<agentpanel>/hooks/session-start.sh", "timeout": 5 }] }
+    { "hooks": [{ "type": "command", "command": "<agent-panel>/hooks/session-start.sh", "timeout": 5 }] }
   ]
 }
 ```
@@ -99,7 +99,7 @@ or cleared after that):
 | `y` | Refs: copy the URL or path · To do: copy the request |
 | `x` | To do: check off or reopen |
 | `f` / click the header | Subagents: fold or unfold the Finished section |
-| `q` | Close it in this tab; it still follows you to other Claude tabs. The **agentpanel: show / hide** action brings it back here |
+| `q` | Close it in this tab; it still follows you to other Claude tabs. The **agent-panel: show / hide** action brings it back here |
 
 Data comes from Claude Code's own files: the session transcript, each subagent's transcript under
 `<session>/subagents/`, and the `<task-notification>` entries marking when subagents stop.
@@ -113,7 +113,7 @@ the included `SubagentStart` hook in `~/.claude/settings.json`; it adds the inst
 ```json
 "hooks": {
   "SubagentStart": [
-    { "hooks": [{ "type": "command", "command": "<agentpanel>/hooks/subagent-start.sh", "timeout": 5 }] }
+    { "hooks": [{ "type": "command", "command": "<agent-panel>/hooks/subagent-start.sh", "timeout": 5 }] }
   ]
 }
 ```
@@ -149,7 +149,10 @@ project's `AGENTS.md` if you want the agent to maintain the list:
 Link a local checkout instead of installing from GitHub:
 
 ```sh
-herdr plugin link /path/to/agentpanel --enabled
+herdr plugin link /path/to/agent-panel --enabled
 ```
+
+Before 0.4.2 the plugin was called `agentpanel`. To switch, run `herdr plugin uninstall agentpanel`, then
+install `flowy11/agent-panel`.
 
 Run the provider regression tests with `node --test test/*.test.mjs`.
