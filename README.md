@@ -5,15 +5,9 @@ that tab runs Claude Code or Codex (tabs without it, like a shell or a browser, 
 keeps the width you resize it to, and follows Claude's `←` agent view when you switch the terminal to another main
 session. If the agent quits in its tab, the panel closes a few seconds later.
 
-```
- Subagents ●1   Messages 211              jobee
- ───────────────────────────────────────────────
- ● you                                  15m ago
- give me estimation of verifier's progress
- ● Claude  $1                           15m ago
- Roughly 1.5 to 2 hours more, so it should be
- done by early afternoon if the Android suite…
-```
+![agentpanel next to a Claude Code session: subagents with live progress, then the Messages, Refs and To do tabs](docs/demo.gif)
+
+Claude Code runs three subagents while the panel follows along ([full-resolution video](docs/demo.mp4)).
 
 Switch tabs with a click on the tab bar, `←` / `→`, `Tab`, or `1` / `2` / `3` / `4`. In a narrow panel the tab names shorten
 to `A`, `M`, `R` and `D`.
@@ -96,8 +90,11 @@ or cleared after that):
 | --- | --- |
 | `←` / `→`, `Tab`, `1`–`4`, click | Switch tabs |
 | `j` / `k`, wheel | Move |
+| `g` / `G` | Jump to the first or last item |
 | Enter / click | Messages: show in full (popup) · Subagents: open in Claude · Refs: open |
-| Space | Expand details |
+| Space, `l` / `h` | Expand details |
+| `v` | Subagents: read its conversation in the panel (Esc goes back, `z` zooms) |
+| `a` | Subagents: all of them, or just the last 30 minutes |
 | `m` | Subagents: back to main |
 | `y` | Refs: copy the URL or path · To do: copy the request |
 | `x` | To do: check off or reopen |
