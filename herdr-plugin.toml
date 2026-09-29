@@ -1,0 +1,45 @@
+id = "agentpanel"
+name = "agentpanel"
+version = "0.4.0"
+min_herdr_version = "0.8.2"
+description = "A permanent side panel for the Claude Code or Codex session you're focused on: your messages as a compact list, and its subagents (running, done, failed or stalled) with what each is doing, what the agent asked you to do, and the URLs and files it mentioned."
+platforms = ["linux", "macos"]
+
+# The panel follows you: on startup and whenever the focused tab changes, it is
+# docked on the right of that tab, if the tab runs a Claude Code or Codex session.
+[[startup]]
+command = ["sh", "bin/run.sh", "follow"]
+
+[[events]]
+on = "tab.focused"
+command = ["sh", "bin/run.sh", "follow"]
+
+[[events]]
+on = "workspace.focused"
+command = ["sh", "bin/run.sh", "follow"]
+
+# Claude Code starting in a pane: bring the panel to that tab if it is focused.
+[[events]]
+on = "pane.agent_detected"
+command = ["sh", "bin/run.sh", "follow"]
+
+[[actions]]
+id = "toggle"
+title = "agentpanel: show / hide"
+contexts = ["global"]
+command = ["sh", "bin/run.sh", "toggle"]
+
+# One message in full, over the whole terminal (click or Enter in the Messages tab).
+[[panes]]
+id = "message"
+title = "Message"
+placement = "popup"
+width = "80%"
+height = "85%"
+command = ["sh", "bin/run.sh", "message"]
+
+[[panes]]
+id = "panel"
+title = "agentpanel"
+placement = "split"
+command = ["sh", "bin/run.sh", "panel"]

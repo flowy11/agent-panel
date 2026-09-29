@@ -1,0 +1,7 @@
+#!/bin/sh
+# Claude Code SessionStart hook: asks the main agent to keep an up-to-date list of what the user
+# still has to do, which the herdr Agent Panel shows in its To do tab.
+cat >/dev/null # hook input on stdin, not needed
+cat <<'JSON'
+{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"User to-do list (required; a status panel shows it to the user so requests aren't lost as the conversation scrolls): keep track, across the whole session, of everything the user still needs to do themselves: run a command, restart or reload something, review a file or plan, try something out, make a decision, answer a question, or give you information or access. Whenever that list changes (you need something new, or the user has done, answered or dropped an item), end your message with the complete current list, one plain-text line per item starting with `ACTION: ` followed by a short imperative sentence, for example `ACTION: Review the plan in docs/plan.md` or `ACTION: Run ! gcloud auth login`. Always repeat every item that is still open, not just new ones: the panel replaces its list with your latest one. Keep an item's wording the same while it stays open. When nothing is left, write the single line `ACTION: none`. Put these lines outside code blocks, and don't list things you will do yourself or optional suggestions. If the list hasn't changed, don't repeat it."}}
+JSON
